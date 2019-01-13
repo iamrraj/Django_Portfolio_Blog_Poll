@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 130px;">
+
+  {% for post in object_list %}
+  {% comment %} <div class="post-entry">
+    <h2><a href="{% url 'post_detail' post.pk %}"><span> {{ post.pk }} .</span>  {{ post.title }}</a></h2>
+    <p>{{ post.body }}</p>
+   
+  </div> {% endcomment %}
+<div class="card mb-4">
+   <div class="card-body" style="margin-top: 20xp;">
+
+        <div class="row">
+          <div class="col-lg-6">
+
+            <a href="#">
+              <img class="img-fluid rounded" src="{{ post.image.url  }}" alt="" style="height: 200px; width: 500px;">
+            </a>
+          </div>
+          <div class="col-lg-6">
+            <h2><a href="{% url 'post_detail' post.pk %}"><span> {{ post.pk }} .</span>  {{ post.title }}</a></h2>
+            <p>{{ post.body }}</p>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                   Learn More
+             </button></p><hr style="width: 100%">
+         
+      </div>
+      <div class="card-footer text-muted" style="margin-top: 15px;">
+         <p>{{ post.pub_date }} | <span>By: {{ post.author}} </span> </p>
+      </div>
+      
+</div> 
+
+       
+
+</div>{% endfor %}
+
+{% endblock content %}
