@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'markdown_deux',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_project.urls'
@@ -80,6 +84,16 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.linkedin.LinkedinOAuth',
+    
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 # Password validation
@@ -115,6 +129,7 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -127,4 +142,41 @@ MEDIA_URL = '/media/'
 
 STATIC_DIRS = [
     os.path.join(BASE_DIR, 'static')
+]
+
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'index'
+
+# #For Twitter Login
+# SOCIAL_AUTH_TWITTER_KEY = '9TD12xahCWCDdyLzpmw61GSM9'
+# SOCIAL_AUTH_TWITTER_SECRET = 'mwtdcUe4uOvvJjDk2AuQ9Mq2xiHPw3740m5iGLf6hwg3B4TNSx'
+
+#For Linkedln Login
+SOCIAL_AUTH_LINKEDIN_KEY = '86rmpc246ejozu'
+SOCIAL_AUTH_LINKEDIN_SECRET = '4vKCfklEOWz9jJrl'
+
+#For Github Login
+SOCIAL_AUTH_GITHUB_KEY = '0b57525bb96305114c7b'
+SOCIAL_AUTH_GITHUB_SECRET = '649ae5ca31de906237e4fa9c659e1ba2fc97c091'
+
+# For Facebook  Login
+SOCIAL_AUTH_FACEBOOK_KEY = '757579997952244'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '0f3aea488486129eaeb5f13a7668b9a7'  # App Secret
+
+
+
+# SOCIAL_AUTH_LOGIN_ERROR_URL = '/index/'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/index/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
+SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA      = [
+    ('id', 'id'),
+    ('first-name', 'first_name'),
+    ('last-name', 'last_name'),
+    ('email-address', 'email_address'),
+    ('headline', 'headline'),
+    ('industry', 'industry')
 ]

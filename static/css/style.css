@@ -1,0 +1,175 @@
+
+#p{
+  /*background-color: #0f9d58;*/
+  letter-spacing: 2px;
+  text-align: justify;
+  margin: 0 auto;
+  width: 900px;
+
+  color: black;
+  font-weight: bold;
+
+
+
+
+
+}
+.hr{
+  margin-left: 50px;
+}
+
+.accordionExample{
+  background: transparent;
+}
+
+.col-6{
+  margin-top: 20px;
+}
+.progress{
+  height: 30px;
+}
+span{
+  font-size: 18px;
+}
+
+#button{
+  width: 150px;
+  height: 20px;
+}
+
+.centered {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+
+
+
+/* Facts Section
+--------------------------------*/
+#fact {
+background: url("https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500") center top no-repeat fixed;
+background-size: cover;
+padding: 40px 0 ;
+position: relative;
+}
+#fact::before {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.78);
+z-index: 0;
+}
+
+
+#fact .container {
+position: relative;
+z-index: 10;
+}
+
+/* Education Section
+--------------------------------*/
+#fact1 {
+background: url("https://physioguru.com/images/2018/01/12/Online%20education.jpg") center top no-repeat fixed;
+background-size: cover;
+padding: 40px 0 ;
+position: relative;
+}
+#fact1::before {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+background: rgba(55, 255, 255, 0.78);
+z-index: 0;
+}
+
+
+#fact1 .container {
+position: relative;
+z-index: 10;
+}
+
+
+.img-container {
+      float: left;
+      width: 33%;
+
+      margin-left: 20px;
+  }
+.img-container1 {
+      float: right;
+      width: 33%;
+
+      margin-left: 50px;
+  }
+
+
+
+
+
+/* Skills Section
+--------------------------------*/
+#fact2 {
+background: url("https://higherlogicdownload.s3.amazonaws.com/INCPAS/UploadedImages/fd94f614-55b3-4524-abeb-23962b1d8bb7/Skills.jpeg") center top no-repeat fixed;
+background-size: cover;
+padding: 40px 0 ;
+position: relative;
+}
+#fact2::before {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.78);
+z-index: 0;
+}
+
+
+#fact2 .container {
+position: relative;
+z-index: 10;
+}
+
+
+
+/* Hire Section
+--------------------------------*/
+
+
+#fact11 {
+background: url("https://career.vt.edu/content/career_vt_edu/en/job-search/presenting_yourself/resumes/_jcr_content/content/vtmulticolumn_1519867830/vt-items_0/adaptiveimage.transform/m-medium/image.jpg") center top no-repeat fixed;
+background-size: cover;
+padding: 20px 5 ;
+position: relative;
+}
+#fact11::before {
+content: '';
+position: absolute;
+left: 0;
+right: 0;
+top: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.78);
+z-index: 0;
+}
+
+#fact11 .container {
+position: relative;
+z-index: 10;
+}
+
+
+/*
+  Note: It is best to use a less version of this file ( see http://css2less.cc
+  For the media queries use @screen-sm-min instead of 768px.
+  For .omb_spanOr use @body-bg instead of white.
+*/

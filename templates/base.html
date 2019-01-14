@@ -6,8 +6,14 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"\
     rel="stylesheet">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+     <link rel="icon" type="image/png" sizes="32x32" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkhM4Qu5c_JFhQ2hleY4r_eodHp8OSyLzqP8A3B-HAvjp3OJxY0A">
+
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    
+
 
   </head>
   <body>
@@ -25,7 +31,7 @@
        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
 
         <a class="navbar-brand" href="#">
-            <img src="http://placehold.it/700x300/0000FF/808080?text=raj+rahul.com+Now" width="70" height="70" alt="">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkhM4Qu5c_JFhQ2hleY4r_eodHp8OSyLzqP8A3B-HAvjp3OJxY0A" width="70" height="70" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,14 +39,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+
+
+
+             <li class="nav-item active">
+                   <strong>  <a  class="nav-link text-dark" href="/">Home <span class="sr-only">(current)</span></a></strong>
                 </li>
+               
+               
+                
                 <li class="nav-item">
-                     <a href="{% url 'post_new' %}" class="nav-link ">+ New Post</a>
-                </li>
-                <li class="nav-item">
-                   <strong> <a href="{% url 'home' %}"  class="nav-link ">Django blog</a></strong>
+                   <strong> <a href="{% url 'contact' %}"  class="nav-link text-dark">Contact</a></strong>
                 </li>
                 <!--{% comment %} <li class="nav-item">-->
                     <!--<a class="nav-link" href="/signup">Project</a>-->
@@ -49,32 +58,75 @@
                     <!--{% comment %} <a class="nav-link" href="/home">Login</a> {% endcomment %}-->
                 </li>
 
+               
+            {% if user.is_authenticated %}
+
+               <li class="nav-item">
+                    <strong> <a href="{% url 'post_new' %}" class="nav-link text-dark">+ New Post</a></strong>
+                </li>
+
+
+                <li class="nav-item">
+                   <strong> <a href="{% url 'home' %}"  class="nav-link text-dark">My Blog</a></strong>
+                </li>
+
+                <li class="nav-item">
+                   <strong> <a href="#"  class="nav-link text-dark">Poll</a></strong>
+                </li>
+
+                
+            <li class="nav-item dropdown">
+              
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+           <button class="btn btn-success "> {{ user.get_full_name }}</button>
+              </a> 
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                {% comment %} <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="#">2 Column Portfolio</a> {% endcomment %}
+          
+                
+                    <a href="{% url 'logout' %}" class="dropdown-item">logout</a>
+                    <a href="{% url 'detail' %}" class="dropdown-item">Profile</a>
+                    <a href="{% url 'settings' %}" class="dropdown-item">settings</a> 
+                    <a href="{% url 'password' %}" class="dropdown-item">change password</a> 
+              </div>  
+            </li>
+            
+            {% else %}
             <li class="nav-item">
-               <button class="btn btn-primary " style="height: 40px; font-weight: bolder;"> <a href="#" class="nav-link" style="line-height: 10px; color: white ">login</a> </button>
+                <strong> <a href="{% url 'login' %}"  class="nav-link text-dark">MY Blog</a></strong>
+            </li>
+            <li class="nav-item">
+                <strong> <a href="{% url 'login' %}"  class="nav-link text-dark">Poll</a></strong>
             </li>
 
+
+            <li class="nav-item">
+               <button class="btn btn-primary " style="height: 40px; font-weight: bolder;"> <a href="{% url 'login' %}" class="nav-link" style="line-height: 10px; color: white ">login</a> </button>
+            </li>
+            
             <li class="nav-item" style="margin-left: 10px;">
-                <button class="btn btn-warning " style="height: 40px; font-weight: bolder; "><a href="#" class="nav-link" style="line-height: 10px;">Enroll</a></button>
+                <button class="btn btn-warning " style="height: 40px; font-weight: bolder; "><a href="{% url 'signup' %}" class="nav-link" style="line-height: 10px;">Enroll</a></button>
             </li>
-
+            {% endif %}
             </ul>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.linkedin.com/in/iamrraj/" target="_blank">
-                        <img src="http://placehold.it/700x300/0000FF/808080?text=raj+rahul.com+Now" width="30" height="30"/>
+                        <img src="http://www.ergodomus.it/wp-content/uploads/2017/02/linkedin-logo-copy.png" width="30" height="30"/>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" target="_blank">
                         <!--{% comment %} <img src="{% static 'mysite/images/instagram.png' %}" width="30" height="30"/> {% endcomment %}-->
-                        <img src="http://placehold.it/100x100/0000FF/808080?text=raj+rahul.com+Now" width="30" height="30"/>
+                        <img src="http://www.isiccard.ie/wp-content/uploads/2018/02/instagram.jpg" width="30" height="30"/>
 
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="http://www.facebook.com/iamrraj" target="_blank">
-                        <img src="http://placehold.it/700x300/0000FF/808080?text=raj+rahul.com+Now" width="30" height="30"/>
+                        <img src="https://www.facebook.com/images/fb_icon_325x325.png" width="30" height="30"/>
                     </a>
                 </li>
                 <li class="nav-item">
