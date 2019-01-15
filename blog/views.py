@@ -3,8 +3,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 import requests
 from .models import Post,Contact
-
+from django.utils import timezone
 import json
+
+from django.db.models import Q
 
 from django.views import generic
 
@@ -103,8 +105,31 @@ def contact(request):
 #     model = Post
 #     template_name = 'home.html'
 
+
+
+
 def BlogListView(request):
+    
+    time = timezone.now().date()
     contact_list = Post.objects.all()
+    search_term=''
+    # if request.user.is_staff or request.user.is_superuser:
+    #     contact_list = Post.objects.all()
+
+    # query = request.GET.get("q")
+    # if query:
+    #     contact_list= Post.filter(title_iconatins=query)
+    #     return render(request, 'home.html')
+                      
+
+    if 'q' in request.GET:
+        search_term = request.GET['q']
+        contact_list = contact_list.filter(Q(title__icontains=search_term)|
+                                           Q(body__icontains=search_term)).distinct()
+        
+
+                        # Q(author=query)
+                        # # ).distinct()
     paginator = Paginator(contact_list, 4) # Show 4 contacts per page
 
     page = request.GET.get('page')

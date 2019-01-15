@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top: 130px;">
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+
+
+<form action="{% url 'polls:vote' poll.id %}" method="post">
+{% csrf_token %}
+
+{% for choice in poll.choice_set.all %}
+
+  <input type="radio"
+         name="choice"
+         id="choice{{ forloop.counter }}"
+         value="{{choice.id}}"/>
+  <label for="choice{{ forloop.counter }}">{{ choice.choice_text }} - {{ choice.num_votes }}</label>
+  <br/>
+
+{% endfor %}
+<input class='btn btn-primary mb-2' type="submit" value="Vote" {% if not user_can_vote %}disabled{% endif %}/>
+
+</form>
+
+{% if not user_can_vote %}
+
+<p>{{poll}} - {{poll.num_votes}} votes</p>
+    {% for choice_dict in results %}
+    <div class="row">
+        <div class="col-sm-6">
+        {{choice_dict.text}}
+        <div class="progress mb-1">
+          <div class="progress-bar progress-bar-danger progress-bar-striped active "   role="progressbar" style="width: {{choice_dict.percentage}}%;"><span style="font-size: 20px; color:black">{{choice_dict.num_votes}} </span></div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+{% else %}
+  <p>Vote to see results!</p>
+{% endif %}
+
+</div>
+{% endblock %}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'markdown_deux',
+    'polls',
     'social_django',
 ]
 
@@ -171,12 +172,3 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '0f3aea488486129eaeb5f13a7668b9a7'  # App Secret
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/index/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
-SOCIAL_AUTH_LINKEDIN_OAUTH2_FIELD_SELECTORS = ['email-address', 'headline', 'industry']
-SOCIAL_AUTH_LINKEDIN_OAUTH2_EXTRA_DATA      = [
-    ('id', 'id'),
-    ('first-name', 'first_name'),
-    ('last-name', 'last_name'),
-    ('email-address', 'email_address'),
-    ('headline', 'headline'),
-    ('industry', 'industry')
-]
